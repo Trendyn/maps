@@ -25,7 +25,7 @@ RUN service mysql start && \
   npm install mapshaper topojson -g 
 
 WORKDIR /db/maps/WORLD
-RUN cp /usr/bin/nodejs /bin/node && node ../makemaps.js
+RUN cp /usr/bin/nodejs /usr/bin/node && node ../makemaps.js
 
 COPY ./init_db.sh /db
 WORKDIR /db
