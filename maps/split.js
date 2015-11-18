@@ -86,7 +86,9 @@ function Main() {
           id   = feature.properties.ID_3;
         }
 
-        code = name.replace(/\//g, '|') ;
+        if(name)
+          code = name.replace(/\//g, '|') ;
+        
         break;
       default:
         console.log('Invalid kind %s', kind);

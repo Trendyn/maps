@@ -69,7 +69,7 @@ function Main()
    Combine all geo.json file in current directory via Topojson
    ----------------------------------------------------------------*/
   console.log('Combining maps');
-  cmd = 'topojson -p submap -p ' + name + ' -p ' + id + ' -p ' + code + ' ' + file + ' -o combine.json';
+  cmd = 'topojson --filter=none -p submap -p ' + name + ' -p ' + id + ' -p ' + code + ' ' + file + ' -o combine.json';
   output = exec(cmd, true);
   console.log(output.stdout);
   console.log(output.stderr);

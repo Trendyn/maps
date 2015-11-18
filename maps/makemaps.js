@@ -140,14 +140,15 @@ function actionOnDir(dir, cb)
       console.log("Adding map to database.............................................Done");
     }
 
-    if (kind == 'world' || kind == 'state' || (kind == 'country' && sourceList[country].submap == "1")) {
+    if (kind == 'world' || (kind == 'country' && sourceList[country].submap == "1")) {
       nodedir.subdirs(dir, function(err, subdirs) {
         if (err) throw err;
         async.each (subdirs, function(dir, cb) {
          actionOnDir(dir, cb);
         },
         function(err) {
-          process.exit(1);
+          if(err)
+            process.exit(1);
         });
       });
     }
