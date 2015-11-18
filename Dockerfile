@@ -16,8 +16,7 @@ RUN service mysql start && ./create_db.sh
 
 COPY ./maps /db/maps
 WORKDIR /db/maps
-RUN service mysql start && \
-  apt-get update && \
+RUN apt-get update && \
   apt-get install -y nodejs nodejs-legacy && \
   apt-get install -y npm && \
   npm install && \
@@ -25,11 +24,11 @@ RUN service mysql start && \
   npm install mapshaper topojson -g 
 
 WORKDIR /db/maps/WORLD
-RUN node ../makemaps.js
+RUN service mysql start && node ../makemaps.js
 
 COPY ./init_db.sh /db
 WORKDIR /db
-RUN service mysql start && ./init_db.sh opinions && service mysql stop
+RUN service mysql start && ./init_db.sh opinions 
 
 
 
