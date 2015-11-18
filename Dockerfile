@@ -18,7 +18,7 @@ COPY ./maps /db/maps
 WORKDIR /db/maps
 RUN service mysql start && \
   apt-get update && \
-  apt-get install -y nodejs && \
+  apt-get install -y nodejs nodejs-legacy && \
   apt-get install -y npm && \
   npm install && \
   apt-get install -y gdal-bin unzip wget && \
