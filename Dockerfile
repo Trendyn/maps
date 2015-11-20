@@ -28,6 +28,7 @@ WORKDIR /db
 RUN apt-get update && \
     apt-get install -y openssh-client p7zip-full && \
     ls -la ./ && \
+    chmod 600 ./maps-ssh-priv-key && \
     scp -oStrictHostKeyChecking=no -P 6277 -i ./maps-ssh-priv-key admin@0b918df9-opynios.node.tutum.io:/home/admin/maps/maps.sql.7z /db/maps/ 
 
 WORKDIR /db/maps
