@@ -1,12 +1,8 @@
 #Set base image to Ubuntu
-FROM tutum/mysql:5.6 
+FROM ubuntu:14.04 
 
 #File Author / Maintainer
 MAINTAINER opynios
-
-ENV MYSQL_USER=oc
-ENV MYSQL_PASS=opinions
-ENV ON_CREATE_DB=opinions
 
 RUN mkdir -p /db/maps 
 COPY ./init_db.sh /db/
@@ -23,10 +19,11 @@ WORKDIR /db
 #  apt-get install -y gdal-bin unzip wget && \
 #  npm install mapshaper topojson -g 
 
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Get permade maps.sql.7z file from maps hosting machine.
 RUN apt-get update && \
-    apt-get install -y openssh-client p7zip-full && \
+    apt-get install -y mysql-server-5.6 mysql-client-core-5.6 mysql-client-5.6 openssh-client p7zip-full && \
     ls -la ./ && \
     chmod 600 ./maps-ssh-priv-key && \
     scp -oStrictHostKeyChecking=no -P 6277 -i ./maps-ssh-priv-key admin@0b918df9-opynios.node.tutum.io:/home/admin/maps/maps.sql.7z /db/maps/ 
@@ -37,9 +34,11 @@ RUN 7z e maps.sql.7z
 WORKDIR /db
 RUN service mysql start && \
     ./init_db.sh opinions && \
+    mount && \
+    ls /var/lib/mysql && \
     service mysql stop
 
-
+CMD /usr/bin/mysqld_safe
 
 
 

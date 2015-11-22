@@ -892,3 +892,8 @@ CALL PostVote(1, 5, 1);
 CALL PostVote(1, 6, 1);
 CALL PostVote(1, 7, 2);
 CALL PostVote(1, 8, 2);
+
+flush privileges;
+flush tables;
+flush hosts;
+flush logs;
