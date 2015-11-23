@@ -26,7 +26,7 @@ RUN apt-get update && \
     apt-get install -y mysql-server-5.6 mysql-client-core-5.6 mysql-client-5.6 openssh-client p7zip-full && \
     ls -la ./ && \
     chmod 600 ./maps-ssh-priv-key && \
-    scp -oStrictHostKeyChecking=no -P 6277 -i ./maps-ssh-priv-key admin@0b918df9-opynios.node.tutum.io:/home/admin/maps/maps.sql.7z /db/maps/ 
+    scp -oStrictHostKeyChecking=no -P 6277 -i ./maps-ssh-priv-key admin@maps.map-hosting.opynios.svc.tutum.io:/home/admin/maps/maps.sql.7z /db/maps/ 
 
 WORKDIR /db/maps
 RUN 7z e maps.sql.7z
