@@ -33,7 +33,7 @@ RUN 7z e maps.sql.7z
 
 WORKDIR /db
 RUN service mysql start && \
-    ./init_db.sh opinions && \
+    ./init_db.sh localhost opinions && \
     mount && \
     ls /var/lib/mysql && \
     service mysql stop
