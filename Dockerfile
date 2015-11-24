@@ -32,8 +32,9 @@ WORKDIR /db/maps
 RUN 7z e maps.sql.7z
 
 WORKDIR /db
-RUN service mysql start && \
-    ./init_db.sh localhost opinions && \
+RUN sed -i.bak s/127\.0\.0\.1/0\.0\.0\.0/g /etc/mysql/my.cnf && \
+    service mysql start && \
+    ./init_db.sh localhost root "" && \
     mount && \
     ls /var/lib/mysql && \
     service mysql stop
