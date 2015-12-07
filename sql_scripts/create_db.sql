@@ -1,5 +1,0 @@
-CREATE DATABASE IF NOT EXISTS opinions CHARACTER SET utf8;
-
-GRANT ALL PRIVILEGES ON opinions.* TO 'oc'@'%' IDENTIFIED BY 'opinions';
-
-

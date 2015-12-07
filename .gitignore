@@ -1,5 +1,0 @@
-maps/node_modules
-maps/**/*
-!maps/WORLD/*.*
-!maps/WORLD/IND/*
-!maps/WORLD/US1/*
